@@ -1,0 +1,9 @@
+
+::ng-deep .ngx-charts text {
+  font-weight: bold;
+}
+
+.chart-container {
+  display: grid;
+  height: 300px;
+}
