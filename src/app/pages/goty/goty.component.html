@@ -3,8 +3,14 @@
 
 <hr>
 
+<div *ngIf="loading" class="text-center">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+  <p>Loading games, please wait...</p>
+</div>
 
-<div class="row">
+<div class="row"  *ngIf="!loading">
   <div class="col-sm-6 col-md-4 col-lg-3"
   *ngFor="let game of games">
     <div class="card h-100 bg-dark">
@@ -17,7 +23,9 @@
           Votes: {{game.votes}}
         </p>
 
-        <button class="btn btn-block btn-outline-primary w-100">
+        <button
+        (click)="voteGame(game)"
+        class="btn btn-block btn-outline-primary w-100">
           Vote
         </button>
 

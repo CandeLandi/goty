@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
 import { Color, ScaleType } from '@swimlane/ngx-charts';
 
 @Component({
@@ -7,7 +7,9 @@ import { Color, ScaleType } from '@swimlane/ngx-charts';
   styleUrl: './horizontal-bar-chart.component.css',
 })
 export class HorizontalBarChartComponent implements OnDestroy{
-  results: any[] = [
+
+@Input() results: any[] = [];
+  /*   results: any[] = [
     {
       name: 'Game #1',
       value: 20,
@@ -24,7 +26,7 @@ export class HorizontalBarChartComponent implements OnDestroy{
       name: 'Game #4',
       value: 30,
     },
-  ];
+  ]; */
 
   // options
   showXAxis = true;
@@ -43,10 +45,10 @@ export class HorizontalBarChartComponent implements OnDestroy{
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'],
   };
 
-  interval: any ;
+
 
   constructor() {
-    this.interval = setInterval(() => {
+/*     this.interval = setInterval(() => {
       console.log('tick')
 
       const newResults = [...this.results];
@@ -56,10 +58,10 @@ export class HorizontalBarChartComponent implements OnDestroy{
       }
 
       this.results = [...newResults];
-    }, 1500);
+    }, 1500); */
   }
   ngOnDestroy(): void {
-    clearInterval(this.interval)
+/*     clearInterval(this.interval) */
   }
 
   onSelect(event: any) {

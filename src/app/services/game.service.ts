@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Game } from '../interfaces/game.interface';
-import { of, tap } from 'rxjs';
+import { catchError, of, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +24,14 @@ export class GameService {
         tap( games => this.games = games )
       )
     }
-
   }
+
+  voteGame( id: string){
+    return this.http.post(`${environment.apiUrl}/api/goty/${id}`,{})
+    .pipe(
+      catchError(err => {
+        return of(err.error)
+      })
+  )}
+
 }
