@@ -6,41 +6,33 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-goty',
   templateUrl: './goty.component.html',
-  styleUrls: ['./goty.component.css']  // Corrección aquí
+  styleUrl: './goty.component.css'
 })
 export class GotyComponent implements OnInit {
 
-  games: Game[] = [];
+   games: Game[] = [];
   loading: boolean = true;
 
-  constructor(private gameService: GameService) {}
+  constructor( private gameService: GameService){}
 
   ngOnInit(): void {
     this.gameService.getNominees()
-      .subscribe(
-        games => {
-          console.log(games);
-          this.games = games;
-          this.loading = false;
-        },
-        error => {
-          console.error(error);
-          this.loading = false;
-        }
-      );
+      .subscribe( games => {
+        console.log(games);
+        this.games = games
+        this.loading = false;
+      })
   }
 
-  voteGame(game: Game) {
+  voteGame( game: Game ) {
     this.gameService.voteGame(game.id)
-      .subscribe(
-        (resp: any) => {
-          if (resp.ok) {
-            Swal.fire('Thanks!', resp.message, 'success');
-            game.votes = resp.votes;
-          } else {
-            Swal.fire('Oops', resp.message, 'error');
-          }
-        }
-      );
+      .subscribe( (resp: any ) => {
+       if(resp.ok) {
+        Swal.fire('Thanks!', resp.message, 'success');
+       } else {
+         Swal.fire('Oops', resp.message, 'error');
+       }
+      })
   }
+
 }

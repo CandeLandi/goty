@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
 
     this.db.collection('goty').valueChanges()
       .pipe(
-        map( resp  => (resp as Game[]).map( ({ name, votes }) => ({ name, value: votes }) ))
+        map( (resp:any[])  => (resp as Game[]).map( ({ name, votes }) => ({ name, value: votes }) ))
       )
       .subscribe( games => {
         // console.log(juegos);
